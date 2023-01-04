@@ -22,10 +22,11 @@ body{
     font-family: 'Open Sans',sans-serif;
     background: var(--amarelo-claro);
     box-sizing: border-box;
+    padding-top: 80px;
 }
 
 #modal-input {
-    display: block; /* display: block */
+    display: none; /* display: block */
     position: fixed; /* Stay in place */
     z-index: 1;
     left: 0;
@@ -42,7 +43,7 @@ body{
     border-radius: 30px;
     margin: 15% auto;
     width: 400px;
-    height: 200px;
+    height: 270px;
     align-items: center;
 }
 
@@ -84,7 +85,7 @@ body{
     border-radius: 30px;
 }
 
-.input-novo-item{
+#input-novo-item{
     background-color: var(--amarelo-claro);
     padding: 0.5rem 1rem;
     border: 10px var(--amarelo-claro) solid;
@@ -92,7 +93,7 @@ body{
     width: 60%;
 }
 
-.btn-add-form{
+#btn-add-form{
     background-color: var(--laranjinha);
     border-color: var(--laranjinha);
     border-radius: 0 30px 30px 0;
@@ -107,8 +108,40 @@ body{
     cursor: pointer;
 }
 
+#dia-semana{
+    padding: 1rem;
+    align-items: center;
+}
+
+.descricao{
+    margin: 0;
+    align-items: center;
+    font-size: small;
+    text-align: center;
+}
+
+select{
+    display: block;
+    background-color: var(--laranjinha);
+    border: 3px var(--amarelo-claro) solid;
+    border-radius: 15px;
+    text-align: center;
+    margin: 0.5rem auto;
+    padding: 5px;
+}
+
+select:hover{
+    background-color: var(--amarelo);
+    border: 3px var(--laranjinha) solid;
+}
+
 header{
     text-align: center;
+    position: relative;
+    height: fit-content;
+    position: fixed;
+    top: 0;
+    left: 40%;
 }
 
 h1{
@@ -197,6 +230,3 @@ ul {
     align-items: center;
     color: var(--rosa-escuro)
 }
-
-
-

@@ -20,20 +20,35 @@
             <h2 class="novo-item">Adicionar nova Tarefa</h2>
 
             <div class="container">
-                <input class="input-novo-item" type="text" placeholder="Digite o nome da nova tarefa">
-                <input class="btn-add-form" type="submit" value="Adicionar">                
+                <input id="input-novo-item" type="text" placeholder="Digite o nome da nova tarefa"></input>
+                <input id="btn-add-form" type="submit" value="Adicionar">                
+            </div>
+
+            <div id="dia-semana">
+                <p class="descricao">Confirme o dia da semana que deseja adicionar a tarefa:</p>
+                <select name="dia-semana">
+                    <option value="segunda">Segunda-feira</option>
+                    <option value="terça">Terça-feira</option>
+                    <option value="quarta">Quarta-feira</option>
+                    <option value="quinta">Quinta-feira</option>
+                    <option value="sexta">Sexta-feira</option>
+                    <option value="sabado">Sábado</option>
+                    <option value="domingo">Domingo</option>
+                </select>
             </div>
         </form>
     </div>
 
     <header>
-        <h1>🌱 Cronos 🌱</h1>
+        <div class="header">
+            <h1>🌱 Cronos 🌱</h1>  
+        </div>
     </header>
 
     <div id="semana">
         <div class="dia-semana">
             <div class="container-dia-semana">
-                <h3 class="dia">Segunda-feira</h3>
+                <h3 class="dia" value="segunda">Segunda-feira</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
 
@@ -53,7 +68,7 @@
 
         <div class="dia-semana">
             <div class="container-dia-semana">
-                <h3 class="dia">Terça-feira</h3>
+                <h3 class="dia" value="terça">Terça-feira</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
 
@@ -73,7 +88,7 @@
 
         <div class="dia-semana">
             <div class="container-dia-semana">
-                <h3 class="dia">Quarta-feira</h3>
+                <h3 class="dia" value="quarta">Quarta-feira</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
 
@@ -93,7 +108,7 @@
         
         <div class="dia-semana">
             <div class="container-dia-semana">
-                <h3 class="dia">Terça-feira</h3>
+                <h3 class="dia" value="quinta">Quinta-feira</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
 
@@ -101,7 +116,7 @@
                 <li class="li-tarefas">
                     <div class="container1">
                         <button class="btn-check"><i class="fas fa-check"></i></button>
-                        <p class="nome-tarefa">Quinta-feira</p>
+                        <p class="nome-tarefa">Terça-feira</p>
                     </div>
                     <div class="container2">
                         <i class="fas fa-edit"></i>
@@ -113,7 +128,7 @@
 
         <div class="dia-semana">
             <div class="container-dia-semana">
-                <h3 class="dia">Sexta-feira</h3>
+                <h3 class="dia" value="sexta">Sexta-feira</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
 
@@ -134,7 +149,7 @@
 
         <div class="dia-semana">
             <div class="container-dia-semana">
-                <h3 class="dia">Sábado</h3>
+                <h3 class="dia" value="sabado">Sábado</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
 
@@ -154,7 +169,7 @@
 
         <div class="dia-semana">
             <div class="container-dia-semana">
-                <h3 class="dia">Domingo</h3>
+                <h3 class="dia" value="domingo">Domingo</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
 
@@ -172,6 +187,6 @@
             </ul>
         </div>        
     </div>
-    
+    <script src="js/main.js"></script>
 </body>
 </html>
