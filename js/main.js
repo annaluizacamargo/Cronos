@@ -1,9 +1,9 @@
 const semana = document.getElementById("semana");
 let diaSemana = [...document.getElementsByClassName("dia")];
-let containerDiaSemana = [...document.getElementsByClassName("container-dia-semana")]
-let ulListaItens = document.getElementsByClassName("lista-itens");
-let liItens = document.getElementsByClassName("li-tarefas");
-let btnCheck = document.getElementsByClassName("btn-check");
+let containerDiaSemana = [...document.getElementsByClassName("container-dia-semana")];
+let ulListaItens = [...document.getElementsByClassName("lista-itens")];
+let liItens = [...document.getElementsByClassName("li-tarefas")];
+
 const modal = document.getElementById("modal-input");
 const btnAddItem = document.getElementById("btn-add-form");
 let novaTarefa = document.getElementById("input-novo-item");
@@ -49,26 +49,34 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa){
     li.className = "li-tarefas";
 
     //criando o botão de check =
-    const checkButton = document.createElement("button");
+    const checkButton = document.createElement("input");
     checkButton.className = "btn-check";
-    checkButton.innerHTML = `<i class="fas fa-check"></i>`;
-        //<i class="fas fa-check ${obj.completed ? "" : "displayNone"}" data-action="checkButton"></i>`
+    checkButton.setAttribute("type", "checkbox")
+    checkButton.addEventListener("click", checar)
     li.appendChild(checkButton);
 
     //criando o texto da li =
     const p = document.createElement("p");
     p.className = "nome-tarefa";
+
+    if(!nomeNovaTarefa){
+        alert("Para continuar, por favor adicione um nome para sua Tarefa")
+        throw new Error("Task need a required parameter: name")
+    }
+
     p.textContent = nomeNovaTarefa;
     li.appendChild(p);
 
     //criando o botão de editar =
     const editButton = document.createElement("i");
     editButton.className = "fas fa-edit";
+    editButton.addEventListener("click", editar);
     li.appendChild(editButton);
 
     //criando o botão de excluir =
     const deleteButton = document.createElement("i");
     deleteButton.className = "fas fa-trash-alt";
+    deleteButton.addEventListener("click", deletar);
     li.appendChild(deleteButton);
 
     //adicionando a li na ul correspondente =
@@ -84,8 +92,27 @@ btnCloseModal.addEventListener("click", (evento)=>{
     modal.style.display = "none";
 })
 
+//@ FAZER OS BOTÕES DAS LI'S FUNCIONAREM
+ulListaItens.forEach((ul)=>{
+    let liItensUl = [...ul.children]
+    liItensUl.forEach((li)=>{
+        li.addEventListener("click", (e)=>{
+            console.log(e.target)
+        })
+    })
+})
+
+function checar(){
+    this.checked? !this.checked : this.checked
+}
+
+//function editar(){
+//    console.log("oi")
+//}
+
+function deletar(){
+    this.parentElement.remove()
+}
+
 //@ LIMITAR ATÉ NO MÁX. 30 CARACTERES ANTES DE QUEBRAR A LINHA NA LI
-
-//@ FAZER OS BOTÔES DAS LI'S FUNCIONAREM
-
 //@ LOCALSTORAGE
