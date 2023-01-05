@@ -45,6 +45,12 @@
         </form>
     </div>
 
+    <div id="editContainer">
+        <input id="editInput" type="text">
+        <button id="editButton" onclick="editar(event)">Editar</button>
+        <button id="cancelButton" onclick="cancelar(event)">Cancelar</button>
+    </div>
+
     <div id="semana">
         <div class="dia-semana">
             <div class="container-dia-semana">
@@ -53,6 +59,14 @@
             </div>
 
             <ul class="lista-itens">
+                <li class="li-tarefas">
+
+                    <input type="checkbox" class="btn-check">
+                        
+                    <p class="nome-tarefa">oioioi</p>
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash-alt"></i>
+                </li>
             </ul>
         </div>
 
