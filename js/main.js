@@ -14,13 +14,16 @@ let btnsAdd = [...document.getElementsByClassName("btn-add")];
 btnsAdd.forEach((btn)=>{
     btn.addEventListener("click", (evento)=>{
         evento.preventDefault();
-        mostraModal();
+        let dia = evento.target.parentElement.firstElementChild;
+        let indexDia = diaSemana.indexOf(dia);
+        mostraModal(indexDia);
     })
 })
 
 // FUNÇÃO PARA EXIBIR O MODAL
-function mostraModal(){
+function mostraModal(indexDia){
     modal.style.display = "block";
+    selectDiaSemana.selectedIndex = indexDia;
 }
 
 
