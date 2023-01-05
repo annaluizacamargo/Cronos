@@ -26,7 +26,6 @@ function mostraModal(indexDia){
     selectDiaSemana.selectedIndex = indexDia;
 }
 
-
 //@ CAPTURAR INPUT DO MODAL E ADICIONAR NO DIA DA SEMANA
 btnAddItem.addEventListener("click", (e)=>{
     e.preventDefault();
@@ -35,7 +34,7 @@ btnAddItem.addEventListener("click", (e)=>{
     criarTarefa(nomeNovaTarefa, diaNovaTarefa);
 
     //removendo o modal =
-    modal.style.display = "none";    
+    modal.style.display = "none";  
 
     //limpando o texto do input =
     novaTarefa.value = "";
@@ -77,9 +76,13 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa){
     adicionar.appendChild(li);
 }
 
-
-
 //@ FAZER O BOTÃO DE CLOSE DO MODAL FUNCIONAR
+const btnCloseModal = document.querySelector("span")
+
+btnCloseModal.addEventListener("click", (evento)=>{
+    evento.preventDefault();
+    modal.style.display = "none";
+})
 
 //@ LIMITAR ATÉ NO MÁX. 30 CARACTERES ANTES DE QUEBRAR A LINHA NA LI
 
