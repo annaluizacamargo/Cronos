@@ -4,7 +4,7 @@
     --rosa-claro: #FFB4B4;
     --opaco: #7e7e7ec4;
     --rosa: #FF7F7F;
-    --rosa-escuro: #ff6e6e;;
+    --rosa-escuro: #ff6e6e;
     --amarelo: #FCD06C;
     --amarelo-claro: #FFE19C;
     --roxinho: #d592ef;
@@ -13,16 +13,21 @@
     --white: #FEFEFE;
 }
 
-html{
-    width: 100%;
-    height: 100%;
-}
-
 body{
     font-family: 'Open Sans',sans-serif;
     background: var(--amarelo-claro);
     box-sizing: border-box;
-    padding-top: 80px;
+    padding-top: 4rem;
+}
+
+header{
+    text-align: center;
+    height: fit-content;
+    position: fixed;
+    top: 0;
+    background: linear-gradient(to bottom, rgba(252,208,108,1) 50%, rgba(255,225,156,1) 90%, rgba(255,225,156,0.3) 100%);
+    width: 100%;
+    right: 0;
 }
 
 #modal-input {
@@ -135,28 +140,17 @@ select:hover{
     border: 3px var(--laranjinha) solid;
 }
 
-header{
-    text-align: center;
-    position: relative;
-    height: fit-content;
-    position: fixed;
-    top: 0;
-    left: 40%;
-}
-
-h1{
-    color: var(--rosa-escuro);
-}
-
 #semana {
     padding: 1rem;
-    display: flex;  
-    white-space: nowrap;
+    display: flex;
 }
 
 .dia-semana{
     margin: 0.5rem;
     min-width: 400px;
+    max-height: fit-content;
+    background-color: var(--rosa-claro);
+    border-radius: 30px;
 }
 
 .container-dia-semana {
@@ -189,29 +183,24 @@ ul {
 }
 
 .lista-itens {
-    background-color: var(--rosa-claro);
     list-style: none;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    height: 350px;
+    min-height: 300px;
     border-radius: 0 0 30px 30px;
 }
 
 .li-tarefas{
+    column-gap: 0.8rem;
     display: flex;
     background-color: var(--rosa-clarinho);
     padding: 1rem;
-    justify-content: space-between;
     align-items: center;
     border-radius: 15px;
     border-bottom: 5px var(--rosa) solid;
-}
-
-.container1{
-    display: flex;
-    width: 80%;
-    align-items: center;
+    margin: 1rem 0;
+    width: fit-content;
 }
 
 .btn-check{
@@ -220,13 +209,17 @@ ul {
     border-radius: 10px;
     height: 30px;
     width: 30px;
-    margin-right: 1rem;
 }
 
-.container2{
-    display: flex;
-    width: 20%;
-    justify-content: space-around;
-    align-items: center;
-    color: var(--rosa-escuro)
+.nome-tarefa{
+    width: 200px;
+}
+
+p .nome-tarefa{
+    word-break: break-all;
+    overflow-wrap: break-word;   
+}
+
+.fa-edit, .fa-trash-alt{
+    color: var(--rosa);
 }
