@@ -11,8 +11,8 @@ let btnsAdd = [...document.getElementsByClassName("btn-add")];
 let editDiaSemana = null;
 
 //@ FAZER O MODAL APARECER EM TODOS OS DIAS PARA ADICIONAR ITENS
-btnsAdd.forEach((btn)=>{
-    btn.addEventListener("click", (evento)=>{
+btnsAdd.forEach((btn) => {
+    btn.addEventListener("click", (evento) => {
         evento.preventDefault();
         let dia = evento.target.parentElement.firstElementChild;
         let indexDia = diaSemana.indexOf(dia);
@@ -21,13 +21,13 @@ btnsAdd.forEach((btn)=>{
 })
 
 // FUNÇÃO PARA EXIBIR O MODAL
-function mostraModal(indexDia){
+function mostraModal(indexDia) {
     modal.style.display = "block";
     selectDiaSemana.selectedIndex = indexDia;
 }
 
 //@ CAPTURAR INPUT DO MODAL E ADICIONAR NO DIA DA SEMANA
-btnAddItem.addEventListener("click", (e)=>{
+btnAddItem.addEventListener("click", (e) => {
     e.preventDefault();
     let nomeNovaTarefa = novaTarefa.value;
     let diaNovaTarefa = selectDiaSemana.value;
@@ -41,7 +41,7 @@ btnAddItem.addEventListener("click", (e)=>{
 })
 
 // FUNÇÃO PARA CRIAR TAREFA =
-function criarTarefa(nomeNovaTarefa, diaNovaTarefa){
+function criarTarefa(nomeNovaTarefa, diaNovaTarefa) {
     let diaSemanaAdd = document.getElementById(`${diaNovaTarefa}`);
 
     //criando a li =
@@ -59,8 +59,9 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa){
     const p = document.createElement("p");
     p.className = "nome-tarefa";
 
-    if(!nomeNovaTarefa){
+    if (!nomeNovaTarefa) {
         alert("Para continuar, por favor adicione um nome para sua Tarefa");
+        throw Error("Para continuar, por favor adicione um nome para sua Tarefa");
     }
 
     p.textContent = nomeNovaTarefa;
@@ -86,19 +87,18 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa){
 //@ FAZER O BOTÃO DE CLOSE DO MODAL FUNCIONAR
 const btnCloseModal = document.querySelector("span");
 
-btnCloseModal.addEventListener("click", (evento)=>{
+btnCloseModal.addEventListener("click", evento => {
     evento.preventDefault();
     modal.style.display = "none";
 })
 
 //@ FAZER OS BOTÕES DAS LI'S FUNCIONAREM
-function checar(){
+function checar() {
     this.checked? !this.checked : this.checked;
 }
+const editContainer = document.getElementById("editContainer");
 
-function criarCaixaEditar(evento){
-    const editContainer = document.getElementById("editContainer");
-    
+function criarCaixaEditar(evento) {
     editContainer.style.display = "flex";
     let posicaoAltura = this.offsetTop;
     let posicaoLargura = this.offsetLeft;
@@ -109,26 +109,29 @@ function criarCaixaEditar(evento){
     editDiaSemana = evento.target.parentElement;
 }
 
-function editar(event){
+function editar(event) {
     let editInput = document.getElementById("editInput");
     let textoLi = editDiaSemana.querySelector(".nome-tarefa");
     
-    if(editInput.value){
+    if (editInput.value) {
         textoLi.textContent = editInput.value;
         editContainer.style.display = "none";
     } else {
         alert("Para continuar, por favor adicione um nome para sua Tarefa");
+        throw Error("Para continuar, por favor adicione um nome para sua Tarefa");
     }
 
     textoLi.textContent = editInput.value;
 }
 
-function cancelar(event){
+function cancelar(event) {
+    console.log(event.target)
     event.target.parentElement.style.display = "none";
 }
 
-function deletar(){
+function deletar(event) {
     this.parentElement.remove();
+    editContainer.style.display = "none";
 }
 
 //@ LIMITAR ATÉ NO MÁX. 30 CARACTERES ANTES DE QUEBRAR A LINHA NA LI
