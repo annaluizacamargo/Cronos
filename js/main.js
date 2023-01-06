@@ -20,11 +20,24 @@ let tarefas = {
     "domingo": [],
 };
 
-Object.keys(tarefas).forEach((key)=>{ //_ Mostra todas as chaves primárias do objeto
-    let valueKey = localStorage.getItem(key);
-    tarefas[key] = JSON.parse(valueKey) ?? [];
-}) 
+function recuperarDados() {
+    Object.keys(tarefas).forEach((key)=>{ //_ Mostra todas as chaves primárias do objeto
+        let valueKey = localStorage.getItem(key);
+        tarefas[key] = JSON.parse(valueKey) ?? [];
+        let recuperaTarefas = tarefas[key];
 
+        // criando Tarefas =
+        recuperaTarefas.forEach((objetoTarefa)=>{
+            criarTarefa(
+                objetoTarefa.nomeTarefa,
+                key,
+                objetoTarefa.isCheck,
+                false
+            )
+        })
+    })  
+}
+recuperarDados()
 
 //@ FAZER O MODAL APARECER EM TODOS OS DIAS PARA ADICIONAR ITENS
 btnsAdd.forEach((btn) => {
@@ -47,7 +60,7 @@ btnAddItem.addEventListener("click", (e) => {
     e.preventDefault();
     let nomeNovaTarefa = novaTarefa.value;
     let diaNovaTarefa = selectDiaSemana.value;
-    criarTarefa(nomeNovaTarefa, diaNovaTarefa);
+    criarTarefa(nomeNovaTarefa, diaNovaTarefa, false, true); //_REVISAR P/ VER SE FUNCIONA
 
     //removendo o modal =
     modal.style.display = "none";  
@@ -57,7 +70,7 @@ btnAddItem.addEventListener("click", (e) => {
 })
 
 // FUNÇÃO PARA CRIAR TAREFA =
-function criarTarefa(nomeNovaTarefa, diaNovaTarefa) {
+function criarTarefa(nomeNovaTarefa, diaNovaTarefa, isCheck, precisaSalvar) {
     let diaSemanaAdd = document.getElementById(`${diaNovaTarefa}`);
     //criando a li =
     const li = document.createElement("li");
@@ -69,6 +82,7 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa) {
     checkButton.setAttribute("type", "checkbox");
     checkButton.addEventListener("click", checar);
     li.appendChild(checkButton);
+    isCheck? checkButton.checked : !checkButton.checked; //_REVISAR P/ VER SE FUNCIONA
 
     //criando o texto da li =
     const p = document.createElement("p");
@@ -98,14 +112,20 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa) {
     let adicionar = diaSemanaAdd.parentElement.nextElementSibling;
     adicionar.appendChild(li);
 
-    // Armazenamento localstorage
-    const tarefa = {
-        nomeTarefa: nomeNovaTarefa,
-        isCheck: false, //_sempre que tem booleano escreva de forma com que facilite a leitura como se estivesse fazendo um ternário "está checado?"
+    //precisaSalvar = essa li ela já existiu antes e foi salva? se sim, não salvar ela novamente
+    //precisaSalvar = se não, ou seja, se ela está sendo criada agora, logo ela não foi salva, portanto precisa salvar
+
+    if(precisaSalvar){
+        const tarefa = {
+            nomeTarefa: nomeNovaTarefa,
+            isCheck: false, //_sempre que tem booleano escreva de forma com que facilite a leitura como se estivesse fazendo um ternário "está checado?"
+        }
+        tarefas[`${diaNovaTarefa}`].push(tarefa)
+        localStorage.setItem(`${diaNovaTarefa}`, JSON.stringify(tarefas[`${diaNovaTarefa}`]))
     }
-    tarefas[`${diaNovaTarefa}`].push(tarefa)
-    localStorage.setItem(`${diaNovaTarefa}`, JSON.stringify(tarefas[`${diaNovaTarefa}`]))
-}
+
+    // Armazenamento localstorage
+ }
 
 //@ FAZER O BOTÃO DE CLOSE DO MODAL FUNCIONAR
 const btnCloseModal = document.querySelector("span");
@@ -162,4 +182,5 @@ function deletar(event) {
 }
 
 //@ LIMITAR ATÉ NO MÁX. 30 CARACTERES ANTES DE QUEBRAR A LINHA NA LI
-//@ LOCALSTORAGE
+//@ LOCALSTORAGE => Criação, Leitura, Atualização e Remoção (CRUD)
+// (REMOÇÃO)
