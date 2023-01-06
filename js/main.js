@@ -3,12 +3,12 @@ let diaSemana = [...document.getElementsByClassName("dia")];
 let containerDiaSemana = [...document.getElementsByClassName("container-dia-semana")];
 let ulListaItens = [...document.getElementsByClassName("lista-itens")];
 let liItens = [...document.getElementsByClassName("li-tarefas")];
-
 const modal = document.getElementById("modal-input");
 const btnAddItem = document.getElementById("btn-add-form");
 let novaTarefa = document.getElementById("input-novo-item");
 let selectDiaSemana = document.querySelector("select");
 let btnsAdd = [...document.getElementsByClassName("btn-add")];
+let editDiaSemana = null;
 
 //@ FAZER O MODAL APARECER EM TODOS OS DIAS PARA ADICIONAR ITENS
 btnsAdd.forEach((btn)=>{
@@ -51,8 +51,8 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa){
     //criando o botão de check =
     const checkButton = document.createElement("input");
     checkButton.className = "btn-check";
-    checkButton.setAttribute("type", "checkbox")
-    checkButton.addEventListener("click", checar)
+    checkButton.setAttribute("type", "checkbox");
+    checkButton.addEventListener("click", checar);
     li.appendChild(checkButton);
 
     //criando o texto da li =
@@ -60,8 +60,7 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa){
     p.className = "nome-tarefa";
 
     if(!nomeNovaTarefa){
-        alert("Para continuar, por favor adicione um nome para sua Tarefa")
-        throw new Error("Task need a required parameter: name")
+        alert("Para continuar, por favor adicione um nome para sua Tarefa");
     }
 
     p.textContent = nomeNovaTarefa;
@@ -70,7 +69,7 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa){
     //criando o botão de editar =
     const editButton = document.createElement("i");
     editButton.className = "fas fa-edit";
-    editButton.addEventListener("click", editar);
+    editButton.addEventListener("click", criarCaixaEditar);
     li.appendChild(editButton);
 
     //criando o botão de excluir =
@@ -85,7 +84,7 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa){
 }
 
 //@ FAZER O BOTÃO DE CLOSE DO MODAL FUNCIONAR
-const btnCloseModal = document.querySelector("span")
+const btnCloseModal = document.querySelector("span");
 
 btnCloseModal.addEventListener("click", (evento)=>{
     evento.preventDefault();
@@ -93,25 +92,43 @@ btnCloseModal.addEventListener("click", (evento)=>{
 })
 
 //@ FAZER OS BOTÕES DAS LI'S FUNCIONAREM
-ulListaItens.forEach((ul)=>{
-    let liItensUl = [...ul.children]
-    liItensUl.forEach((li)=>{
-        li.addEventListener("click", (e)=>{
-            console.log(e.target)
-        })
-    })
-})
-
 function checar(){
-    this.checked? !this.checked : this.checked
+    this.checked? !this.checked : this.checked;
 }
 
-//function editar(){
-//    console.log("oi")
-//}
+function criarCaixaEditar(evento){
+    const editContainer = document.getElementById("editContainer");
+    
+    editContainer.style.display = "flex";
+    let posicaoAltura = this.offsetTop;
+    let posicaoLargura = this.offsetLeft;
+
+    editContainer.style.top = `${posicaoAltura + 30}px`;
+    editContainer.style.left = `${posicaoLargura - 280}px`;
+
+    editDiaSemana = evento.target.parentElement;
+}
+
+function editar(event){
+    let editInput = document.getElementById("editInput");
+    let textoLi = editDiaSemana.querySelector(".nome-tarefa");
+    
+    if(editInput.value){
+        textoLi.textContent = editInput.value;
+        editContainer.style.display = "none";
+    } else {
+        alert("Para continuar, por favor adicione um nome para sua Tarefa");
+    }
+
+    textoLi.textContent = editInput.value;
+}
+
+function cancelar(event){
+    event.target.parentElement.style.display = "none";
+}
 
 function deletar(){
-    this.parentElement.remove()
+    this.parentElement.remove();
 }
 
 //@ LIMITAR ATÉ NO MÁX. 30 CARACTERES ANTES DE QUEBRAR A LINHA NA LI
