@@ -75,6 +75,7 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa, isCheck, precisaSalvar) {
     //criando a li =
     const li = document.createElement("li");
     li.className = "li-tarefas";
+    li.setAttribute("dia-semana", diaNovaTarefa);
 
     //criando o botão de check =
     const checkButton = document.createElement("input");
@@ -112,20 +113,22 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa, isCheck, precisaSalvar) {
     let adicionar = diaSemanaAdd.parentElement.nextElementSibling;
     adicionar.appendChild(li);
 
-    //precisaSalvar = essa li ela já existiu antes e foi salva? se sim, não salvar ela novamente
-    //precisaSalvar = se não, ou seja, se ela está sendo criada agora, logo ela não foi salva, portanto precisa salvar
+    salvarLocalstorage(precisaSalvar, nomeNovaTarefa, diaNovaTarefa)
+}
 
+//@ SALVAR NO LOCALSTORAGE
+function salvarLocalstorage(precisaSalvar, nomeNovaTarefa, diaNovaTarefa) {
     if(precisaSalvar){
         const tarefa = {
+            index: 1,        
             nomeTarefa: nomeNovaTarefa,
             isCheck: false, //_sempre que tem booleano escreva de forma com que facilite a leitura como se estivesse fazendo um ternário "está checado?"
         }
-        tarefas[`${diaNovaTarefa}`].push(tarefa)
-        localStorage.setItem(`${diaNovaTarefa}`, JSON.stringify(tarefas[`${diaNovaTarefa}`]))
-    }
+        tarefas[`${diaNovaTarefa}`].push(tarefa);
+        localStorage.setItem(`${diaNovaTarefa}`, JSON.stringify(tarefas[diaNovaTarefa]));
+    } 
+}
 
-    // Armazenamento localstorage
- }
 
 //@ FAZER O BOTÃO DE CLOSE DO MODAL FUNCIONAR
 const btnCloseModal = document.querySelector("span");
@@ -177,8 +180,23 @@ function cancelar(event) {
 }
 
 function deletar(event) {
-    this.parentElement.remove();
     editContainer.style.display = "none";
+    const li = this.parentElement;
+    const ul = li.parentElement;
+    const indexUl = ulListaItens.indexOf(ul);
+    const ulItens = [...ulListaItens[indexUl].children];
+    const indexli = ulItens.indexOf(li);
+    const diaSemana = li.getAttribute("dia-semana");
+
+    tarefas[diaSemana].splice(indexli, 1);
+    this.parentElement.remove();
+    console.log(tarefas)
+
+    update(diaSemana)
+}
+
+function update(diaSemana){
+    localStorage.setItem(`${diaSemana}`, JSON.stringify(tarefas[diaSemana]))
 }
 
 //@ LIMITAR ATÉ NO MÁX. 30 CARACTERES ANTES DE QUEBRAR A LINHA NA LI
