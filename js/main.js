@@ -10,6 +10,22 @@ let selectDiaSemana = document.querySelector("select");
 let btnsAdd = [...document.getElementsByClassName("btn-add")];
 let editDiaSemana = null;
 
+let tarefas = {
+    "segunda": [],
+    "terca": [],
+    "quarta": [],
+    "quinta": [],
+    "sexta": [],
+    "sabado": [],
+    "domingo": [],
+};
+
+Object.keys(tarefas).forEach((key)=>{ //_ Mostra todas as chaves primárias do objeto
+    let valueKey = localStorage.getItem(key);
+    tarefas[key] = JSON.parse(valueKey) ?? [];
+}) 
+
+
 //@ FAZER O MODAL APARECER EM TODOS OS DIAS PARA ADICIONAR ITENS
 btnsAdd.forEach((btn) => {
     btn.addEventListener("click", (evento) => {
@@ -43,7 +59,6 @@ btnAddItem.addEventListener("click", (e) => {
 // FUNÇÃO PARA CRIAR TAREFA =
 function criarTarefa(nomeNovaTarefa, diaNovaTarefa) {
     let diaSemanaAdd = document.getElementById(`${diaNovaTarefa}`);
-
     //criando a li =
     const li = document.createElement("li");
     li.className = "li-tarefas";
@@ -82,6 +97,14 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa) {
     //adicionando a li na ul correspondente =
     let adicionar = diaSemanaAdd.parentElement.nextElementSibling;
     adicionar.appendChild(li);
+
+    // Armazenamento localstorage
+    const tarefa = {
+        nomeTarefa: nomeNovaTarefa,
+        isCheck: false, //_sempre que tem booleano escreva de forma com que facilite a leitura como se estivesse fazendo um ternário "está checado?"
+    }
+    tarefas[`${diaNovaTarefa}`].push(tarefa)
+    localStorage.setItem(`${diaNovaTarefa}`, JSON.stringify(tarefas[`${diaNovaTarefa}`]))
 }
 
 //@ FAZER O BOTÃO DE CLOSE DO MODAL FUNCIONAR
