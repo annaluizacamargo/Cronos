@@ -107,10 +107,15 @@ function criarCaixaEditar(evento) {
     editContainer.style.left = `${posicaoLargura - 280}px`;
 
     editDiaSemana = evento.target.parentElement;
+    let nomeTarefaAtual = evento.target.parentElement.querySelector(".nome-tarefa").textContent;
+    let textoLi = editContainer.firstElementChild;
+    textoLi.value = nomeTarefaAtual;
 }
 
+let editInput = document.getElementById("editInput");
+
 function editar(event) {
-    let editInput = document.getElementById("editInput");
+    
     let textoLi = editDiaSemana.querySelector(".nome-tarefa");
     
     if (editInput.value) {
@@ -120,7 +125,6 @@ function editar(event) {
         alert("Para continuar, por favor adicione um nome para sua Tarefa");
         throw Error("Para continuar, por favor adicione um nome para sua Tarefa");
     }
-
     textoLi.textContent = editInput.value;
 }
 
