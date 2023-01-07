@@ -152,7 +152,8 @@ select:hover {
     border-radius: 30px;
     justify-content:space-evenly;
     align-items: center;
-    transition: all .5s ease-in-out;
+    transition: all .5s;
+    display: none;
 }
 
 #editInput {
@@ -256,4 +257,32 @@ ul {
 .fa-edit:hover, .fa-trash-alt:hover {
     color: var(--green-dark-2);
     cursor: pointer;
+}
+
+footer {
+    margin-top: 1rem;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    font-size: small;
+}
+
+a {
+    text-decoration: none;
+    color: var(--green-dark-2);
+}
+
+#img-logofooter {
+    height: 50px;
+    animation: rotation 30s infinite linear;
+    margin: 0 3rem;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
 }
