@@ -1,21 +1,23 @@
 :root {
-    --background-white: #fefefe;
-    --rosa-clarinho: #ffd2d2;
-    --rosa-claro: #FFB4B4;
     --opaco: #7e7e7ec4;
-    --rosa: #FF7F7F;
-    --rosa-escuro: #ff6e6e;
     --amarelo: #FCD06C;
     --amarelo-claro: #FFE19C;
-    --roxinho: #d592ef;
     --laranjinha: #ffae51;
     --laranja: #aa5b00;
-    --white: #FEFEFE;
+
+    --background: #E9FFD9;
+    --background-2: #EFFFE3;
+    --green-light-1: #C3EAA8;
+    --green-light-2: #B4E78E;
+    --green-dark-1: #7A9D60;
+    --green-dark-2: #51693e;
+    --green-dark-3: #82A368;
+    --white: #FEFEFE;    
 }
 
 body{
     font-family: 'Open Sans',sans-serif;
-    background: var(--amarelo-claro);
+    background: var(--background);
     box-sizing: border-box;
     padding-top: 4rem;
 }
@@ -25,7 +27,7 @@ header{
     height: fit-content;
     position: fixed;
     top: 0;
-    background: linear-gradient(to bottom, rgba(252,208,108,1) 50%, rgba(255,225,156,1) 90%, rgba(255,225,156,0.3) 100%);
+    background: linear-gradient(to right, var(--green-dark-3) 50%, var(--green-light-2) 100%);
     width: 100%;
     right: 0;
     z-index: 10;
@@ -61,7 +63,7 @@ header{
 
 .close {
     z-index: 1;
-    color: var(--rosa);
+    color: var(--green-light-1);
     font-size: 28px;
     font-weight: bold;
     padding: 0.5rem 1.5rem;
@@ -119,7 +121,7 @@ header{
     width: 300px;
     height: 50px;
     padding: 0.5rem 1.5rem;
-    background-color:var(--rosa);
+    background-color:var(--green-light-1);
     z-index: 3;
     border-radius: 30px;
     justify-content:space-evenly;
@@ -129,29 +131,29 @@ header{
 }
 
 #editInput{
-    background-color: var(--rosa-clarinho);
+    background-color: var(--green-light-1);
     border-radius: 30px 0 0 30px;
     padding: 0.5rem;
 }
 
 #editButton{
-    background-color: var(--rosa-clarinho);
-    border: 1px var(--rosa) solid;
+    background-color: var(--green-light-1);
+    border: 1px var(--green-light-1) solid;
     padding: 0.5rem;
     border-bottom: 3px gray solid;
 }
 
 #cancelButton{
-    background-color: var(--rosa-clarinho);
+    background-color: var(--green-light-1);
     border-radius: 0 30px 30px 0;
-    border: 1px var(--rosa) solid;
+    border: 1px var(--green-light-1) solid;
     padding: 0.5rem;
     border-bottom: 3px gray solid;
 }
 
 #editButton:hover, #cancelButton:hover{
-    background-color: var(--rosa-escuro);
-    border: 1px var(--rosa) solid;
+    background-color: var(--green-light-2);
+    border: 1px var(--green-light-1) solid;
     cursor: pointer;
 }
 
@@ -187,16 +189,26 @@ select:hover{
     display: flex;
 }
 
+
+
+
+
+
+
+
+
+
 .dia-semana{
+    background-color: var(--green-light-1);    
     margin: 0.5rem;
     min-width: 400px;
     max-height: fit-content;
-    background-color: var(--rosa-claro);
     border-radius: 30px;
 }
 
 .container-dia-semana {
-    background-color: var(--rosa);
+    background-color: var(--green-light-1); 
+    border-bottom: 5px var(--green-dark-1) solid; 
     border-radius: 30px 30px 0 0;
     padding: 1rem 2rem;
     display: flex;
@@ -205,8 +217,8 @@ select:hover{
 }
 
 .btn-add{
-    background-color: var(--rosa-escuro);
-    border-color: var(--rosa-escuro);
+    background-color: var(--green-light-2);
+    border-color: var(--green-light-2);
     border-radius: 30px;
     height: fit-content;
     text-align: center;
@@ -215,7 +227,7 @@ select:hover{
 }
 
 .btn-add:hover{
-    background-color: var(--rosa-claro);
+    background-color: var(--green-dark-1);
     cursor: pointer;
 }
 
@@ -234,28 +246,18 @@ ul {
 }
 
 .li-tarefas{
+    background-color: var(--background-2);
+    border-bottom: 5px var(--green-dark-1) solid;
+    border-radius: 15px;    
     column-gap: 0.8rem;
     display: flex;
-    background-color: var(--rosa-clarinho);
     padding: 1rem;
     align-items: center;
-    border-radius: 15px;
-    border-bottom: 5px var(--rosa) solid;
     margin: 1rem 0;
-    width: fit-content;
-}
-
-input .btn-check{
-    color: var(--rosa-escuro);
-    border-color: var(--rosa);
-    border-radius: 10px;
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
 }
 
 .nome-tarefa{
-    width: 200px;
+    width: 210px;
 }
 
 p .nome-tarefa{
@@ -264,5 +266,10 @@ p .nome-tarefa{
 }
 
 .fa-edit, .fa-trash-alt{
-    color: var(--rosa);
+    color: var(--green-dark-1);
+}
+
+.fa-edit:hover, .fa-trash-alt:hover{
+    color: var(--green-dark-2);
+    cursor: pointer;
 }
