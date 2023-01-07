@@ -141,13 +141,15 @@ function checar() {
     const li = this.parentElement;
     const ul = li.parentElement;
     const indexUl = ulListaItens.indexOf(ul);
+    const ulItens = [...ulListaItens[indexUl].children];
+    const indexli = ulItens.indexOf(li);
 
     if(this.checked){
         !this.checked
-        tarefas[diaSemana][indexUl].isCheck = true
+        tarefas[diaSemana][indexli].isCheck = true
     } else {
         this.checked
-        tarefas[diaSemana][indexUl].isCheck = false
+        tarefas[diaSemana][indexli].isCheck = false
     }
 
     update(diaSemana)
@@ -172,8 +174,14 @@ function criarCaixaEditar(evento) {
 
 let editInput = document.getElementById("editInput");
 
-function editar() {
+function editar(event) {
     let textoLi = editDiaSemana.querySelector(".nome-tarefa");
+    const diaSemana = textoLi.parentElement.getAttribute("dia-semana");
+    const li = textoLi.parentElement;
+    const ul = li.parentElement;
+    const indexUl = ulListaItens.indexOf(ul);
+    const ulItens = [...ulListaItens[indexUl].children];
+    const indexli = ulItens.indexOf(li);
     
     if (editInput.value) {
         textoLi.textContent = editInput.value;
@@ -182,7 +190,12 @@ function editar() {
         alert("Para continuar, por favor adicione um nome para sua Tarefa");
         throw Error("Para continuar, por favor adicione um nome para sua Tarefa");
     }
+
     textoLi.textContent = editInput.value;
+    tarefas[diaSemana][indexli].nomeTarefa = editInput.value;
+
+    console.log(tarefas[diaSemana])
+    update(diaSemana)
 }
 
 function cancelar(event) {
