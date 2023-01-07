@@ -1,12 +1,10 @@
 :root {
-    --opaco: #7e7e7ec4;
-    --amarelo: #FCD06C;
-    --amarelo-claro: #FFE19C;
-    --laranjinha: #ffae51;
-    --laranja: #aa5b00;
-
     --background: #E9FFD9;
     --background-2: #EFFFE3;
+    --background-transparent: #7e7e7ec4;
+    --gray: #A7A7A7;
+    --gray-ligth-1: #CFCFCF;
+    --gray-ligth-2: #AFAFAF;
     --green-light-1: #C3EAA8;
     --green-light-2: #B4E78E;
     --green-dark-1: #7A9D60;
@@ -17,32 +15,27 @@
 
 body {
     font-family: 'Open Sans',sans-serif;
-    box-sizing: border-box;
     padding-top: 100px;
     margin: 0;
     background-color: var(--background);
 }
 
 header {
-    height: fit-content;
     position: fixed;
     top: 0;
     background: linear-gradient(to right, var(--green-dark-3) 50%, var(--green-light-1) 100%);
     width: 100%;
-    height: 100px;
     z-index: 10;
-
 }
 
 .header {
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
 }
 
 #img-logo {
     width: 300px;
     margin: 0.5rem 3rem 0 3rem;
-    vertical-align: middle;
 }
 
 #p-header{
@@ -53,35 +46,30 @@ header {
 #modal-input {
     display: none; /* display: block */
     position: fixed;
-    z-index: 1;
+    z-index: 30;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: var(--opaco);
+    background-color: var(--background-transparent);
 }
 
 .formulario {
-    background-color: var(--amarelo);
-    position: static;
+    background-color: var(--green-dark-1);
     border-radius: 30px;
     margin: 15% auto;
     width: 400px;
     height: 270px;
-    align-items: center;
 }
 
 .span {
     display: flex;
     justify-content: flex-end;
-    height: 30px;
 }
 
 .close {
-    z-index: 1;
     color: var(--green-light-1);
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
     padding: 0.5rem 1.5rem;
     font-size: large;
@@ -89,46 +77,68 @@ header {
   
 .close:hover, .close:focus {
     color: red;
-    text-decoration: none;
     cursor: pointer;
 }
 
 .novo-item {
     text-align: center;
-    padding: 10px;
     margin: 0;
-    color: var(--laranja);
 }
 
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--amarelo-claro);
-    margin: 1rem;
+    margin: 1.5rem;
     border-radius: 30px;
 }
 
 #input-novo-item {
-    background-color: var(--amarelo-claro);
+    background-color: var(--background-2);
     padding: 0.5rem 1rem;
-    border: 10px var(--amarelo-claro) solid;
+    border: 5px var(--green-light-1) solid;
     border-radius: 30px 0 0 30px;
     width: 60%;
 }
 
 #btn-add-form {
-    background-color: var(--laranjinha);
-    border-color: var(--laranjinha);
+    background-color: var(--green-light-2);
+    border-color: var(--green-dark-3);
     border-radius: 0 30px 30px 0;
     text-align: center;
     padding: 1rem;
     font-size: medium;
 }
 
-.btn-add-form:hover {
-    background-color: var(--laranja);
-    color: white;
+#btn-add-form:hover {
+    background-color: var(--green-dark-2);
+    border-color: var(--green-light-2);
+    cursor: pointer;
+}
+
+#dia-semana {
+    padding: 0 1rem;
+    align-items: center;
+}
+
+.descricao {
+    margin: 0;
+    font-size: small;
+    text-align: center;
+}
+
+select {
+    display: block;
+    background-color: var(--green-light-2);
+    border-color: var(--green-dark-3);
+    border-bottom: 3px var(--green-dark-2) solid;
+    border-radius: 15px;
+    text-align: center;
+    margin: 0.5rem auto;
+    padding: 5px;
+}
+
+select:hover {
+    background-color: var(--green-dark-2);
+    border-bottom: 3px var(--green-dark-3) solid;
     cursor: pointer;
 }
 
@@ -137,67 +147,38 @@ header {
     width: 300px;
     height: 50px;
     padding: 0.5rem 1.5rem;
-    background-color:var(--green-light-1);
+    background-color:var(--green-dark-3);
     z-index: 3;
     border-radius: 30px;
     justify-content:space-evenly;
     align-items: center;
     transition: all .5s ease-in-out;
-    display: none;
 }
 
 #editInput {
-    background-color: var(--green-light-1);
+    background-color: var(--green-light-2);
+    border-color: var(--green-dark-3);
     border-radius: 30px 0 0 30px;
     padding: 0.5rem;
 }
 
 #editButton {
-    background-color: var(--green-light-1);
-    border: 1px var(--green-light-1) solid;
+    background-color: var(--green-light-2);
+    border-color: var(--green-dark-3);
     padding: 0.5rem;
-    border-bottom: 3px gray solid;
 }
 
 #cancelButton {
-    background-color: var(--green-light-1);
+    background-color: var(--green-light-2);
     border-radius: 0 30px 30px 0;
-    border: 1px var(--green-light-1) solid;
+    border-color: var(--green-dark-3);
     padding: 0.5rem;
-    border-bottom: 3px gray solid;
 }
 
 #editButton:hover, #cancelButton:hover {
-    background-color: var(--green-light-2);
-    border: 1px var(--green-light-1) solid;
+    background-color: var(--green-dark-2);
+    border-color: var(--green-light-2);
     cursor: pointer;
-}
-
-#dia-semana {
-    padding: 1rem;
-    align-items: center;
-}
-
-.descricao {
-    margin: 0;
-    align-items: center;
-    font-size: small;
-    text-align: center;
-}
-
-select {
-    display: block;
-    background-color: var(--laranjinha);
-    border: 3px var(--amarelo-claro) solid;
-    border-radius: 15px;
-    text-align: center;
-    margin: 0.5rem auto;
-    padding: 5px;
-}
-
-select:hover {
-    background-color: var(--amarelo);
-    border: 3px var(--laranjinha) solid;
 }
 
 #semana {
@@ -212,8 +193,6 @@ select:hover {
     min-width: 400px;
     max-height: fit-content;
     border-radius: 30px;
-    width: 1000px;
-
 }
 
 .container-dia-semana {
@@ -258,7 +237,7 @@ ul {
 .li-tarefas {
     background-color: var(--background-2);
     border-bottom: 5px var(--green-dark-1) solid;
-    border-radius: 15px;    
+    border-radius: 15px;
     column-gap: 0.8rem;
     display: flex;
     padding: 0.5rem 1rem;
@@ -268,11 +247,6 @@ ul {
 
 .nome-tarefa {
     width: 225px;
-}
-
-p .nome-tarefa {
-    word-break: break-all;
-    overflow-wrap: break-word;
 }
 
 .fa-edit, .fa-trash-alt {
