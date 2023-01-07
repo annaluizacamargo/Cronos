@@ -3,7 +3,7 @@ let diaSemana = [...document.getElementsByClassName("dia")];
 let containerDiaSemana = [...document.getElementsByClassName("container-dia-semana")];
 let ulListaItens = [...document.getElementsByClassName("lista-itens")];
 let liItens = [...document.getElementsByClassName("li-tarefas")];
-const modal = document.getElementById("modal-input");
+const modal = document.getElementById("modal-overlay");
 const btnAddItem = document.getElementById("btn-add-form");
 let novaTarefa = document.getElementById("input-novo-item");
 let selectDiaSemana = document.querySelector("select");
@@ -223,3 +223,27 @@ function update(diaSemana){
 
 //@ LIMITAR ATÉ NO MÁX. 30 CARACTERES ANTES DE QUEBRAR A LINHA NA LI
 //@ LOCALSTORAGE => Criação, Leitura, Atualização e Remoção (CRUD)
+
+document.documentElement.onclick = function(event){
+
+    if (event.target !== optDesk) {
+        optDesk.style.display = 'none';
+    }
+}
+
+document.documentElement.onclick = function(event){
+    if(event.target != document.querySelector(".formulario")){
+        console.log(event.target)
+        //console.log("oi")
+    }
+}
+
+function fecharModal(){
+    document.documentElement.onclick = (event) => {
+        const overlay = document.getElementById("modal-overlay");
+        if (event.target == overlay) {
+            overlay.style.display = "none";
+        }
+    }
+}
+fecharModal()
