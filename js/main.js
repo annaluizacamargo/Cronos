@@ -60,8 +60,7 @@ btnAddItem.addEventListener("click", (e) => {
     e.preventDefault();
     let nomeNovaTarefa = novaTarefa.value;
     let diaNovaTarefa = selectDiaSemana.value;
-    criarTarefa(nomeNovaTarefa, diaNovaTarefa, false, true); //_REVISAR P/ VER SE FUNCIONA
-
+    criarTarefa(nomeNovaTarefa, diaNovaTarefa, false, true); 
     //removendo o modal =
     modal.style.display = "none";  
 
@@ -83,17 +82,16 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa, isCheck, precisaSalvar) {
     checkButton.setAttribute("type", "checkbox");
     checkButton.addEventListener("click", checar);
     li.appendChild(checkButton);
-    isCheck? checkButton.checked : !checkButton.checked; //_REVISAR P/ VER SE FUNCIONA
+    //isCheck? (checkButton.checked = isCheck) : (checkButton.checked = isCheck);//_Não precisa da condição
+    checkButton.checked = isCheck;
 
     //criando o texto da li =
     const p = document.createElement("p");
     p.className = "nome-tarefa";
-
     if (!nomeNovaTarefa) {
         alert("Para continuar, por favor adicione um nome para sua Tarefa");
         throw Error("Para continuar, por favor adicione um nome para sua Tarefa");
     }
-
     p.textContent = nomeNovaTarefa;
     li.appendChild(p);
 
@@ -120,7 +118,6 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa, isCheck, precisaSalvar) {
 function salvarLocalstorage(precisaSalvar, nomeNovaTarefa, diaNovaTarefa) {
     if(precisaSalvar){
         const tarefa = {
-            index: 1,        
             nomeTarefa: nomeNovaTarefa,
             isCheck: false, //_sempre que tem booleano escreva de forma com que facilite a leitura como se estivesse fazendo um ternário "está checado?"
         }
@@ -140,8 +137,23 @@ btnCloseModal.addEventListener("click", evento => {
 
 //@ FAZER OS BOTÕES DAS LI'S FUNCIONAREM
 function checar() {
-    this.checked? !this.checked : this.checked;
+    const diaSemana = this.parentElement.getAttribute("dia-semana")
+    const li = this.parentElement;
+    const ul = li.parentElement;
+    const indexUl = ulListaItens.indexOf(ul);
+
+    if(this.checked){
+        !this.checked
+        tarefas[diaSemana][indexUl].isCheck = true
+    } else {
+        this.checked
+        tarefas[diaSemana][indexUl].isCheck = false
+    }
+
+    update(diaSemana)
 }
+
+
 const editContainer = document.getElementById("editContainer");
 
 function criarCaixaEditar(evento) {
@@ -160,8 +172,7 @@ function criarCaixaEditar(evento) {
 
 let editInput = document.getElementById("editInput");
 
-function editar(event) {
-    
+function editar() {
     let textoLi = editDiaSemana.querySelector(".nome-tarefa");
     
     if (editInput.value) {
@@ -175,11 +186,10 @@ function editar(event) {
 }
 
 function cancelar(event) {
-    console.log(event.target)
     event.target.parentElement.style.display = "none";
 }
 
-function deletar(event) {
+function deletar() {
     editContainer.style.display = "none";
     const li = this.parentElement;
     const ul = li.parentElement;
@@ -190,9 +200,8 @@ function deletar(event) {
 
     tarefas[diaSemana].splice(indexli, 1);
     this.parentElement.remove();
-    console.log(tarefas)
 
-    update(diaSemana)
+    update(diaSemana);
 }
 
 function update(diaSemana){
@@ -201,4 +210,3 @@ function update(diaSemana){
 
 //@ LIMITAR ATÉ NO MÁX. 30 CARACTERES ANTES DE QUEBRAR A LINHA NA LI
 //@ LOCALSTORAGE => Criação, Leitura, Atualização e Remoção (CRUD)
-// (REMOÇÃO)
