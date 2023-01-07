@@ -17,20 +17,37 @@
 
 body {
     font-family: 'Open Sans',sans-serif;
-    background: var(--background);
     box-sizing: border-box;
-    padding-top: 4rem;
+    padding-top: 100px;
+    margin: 0;
+    background-color: var(--background);
 }
 
 header {
-    text-align: center;
     height: fit-content;
     position: fixed;
     top: 0;
-    background: linear-gradient(to right, var(--green-dark-3) 50%, var(--green-light-2) 100%);
+    background: linear-gradient(to right, var(--green-dark-3) 50%, var(--green-light-1) 100%);
     width: 100%;
-    right: 0;
+    height: 100px;
     z-index: 10;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;    
+}
+
+#img-logo {
+    width: 300px;
+    margin: 0.5rem 3rem 0 3rem;
+    vertical-align: middle;
+}
+
+#p-header{
+    margin: auto 3rem;
+    text-align: right;
 }
 
 #modal-input {
@@ -186,16 +203,8 @@ select:hover {
 #semana {
     padding: 1rem;
     display: flex;
+    overflow-inline: auto;
 }
-
-
-
-
-
-
-
-
-
 
 .dia-semana {
     background-color: var(--green-light-1);
@@ -203,6 +212,8 @@ select:hover {
     min-width: 400px;
     max-height: fit-content;
     border-radius: 30px;
+    width: 1000px;
+
 }
 
 .container-dia-semana {
