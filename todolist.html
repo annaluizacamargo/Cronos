@@ -8,26 +8,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <header>
         <div class="header">
-            <h1>🌱 Cronos 🌱</h1>  
+            <img src="img/logo.svg" id="img-logo">
+            <p id="p-header"><em>estabeleça metas • organize seu tempo • evolua sempre</em></p>
         </div>
     </header>
-    
+
     <div id="modal-input">
         <form class="formulario">
             <div class="span">
-                <span class="close">&times;</span>                 
+                <span class="close">&times;</span>
             </div>
             <h2 class="novo-item">Adicionar nova Tarefa</h2>
 
             <div class="container">
                 <input id="input-novo-item" type="text" placeholder="Digite o nome da nova tarefa"></input>
-                <input id="btn-add-form" type="submit" value="Adicionar">                
+                <input id="btn-add-form" type="submit" value="Adicionar">
             </div>
 
             <div id="dia-semana">
@@ -57,9 +58,7 @@
                 <h3 class="dia" id="segunda">Segunda-feira</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
-
-            <ul class="lista-itens">
-            </ul>
+            <ul class="lista-itens"></ul>
         </div>
 
         <div class="dia-semana">
@@ -67,9 +66,7 @@
                 <h3 class="dia" id="terca">Terça-feira</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
-
-            <ul class="lista-itens">
-            </ul>
+            <ul class="lista-itens"></ul>
         </div>
 
         <div class="dia-semana">
@@ -77,19 +74,15 @@
                 <h3 class="dia" id="quarta">Quarta-feira</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
-
-            <ul class="lista-itens">
-            </ul>
+            <ul class="lista-itens"></ul>
         </div>
-        
+
         <div class="dia-semana">
             <div class="container-dia-semana">
                 <h3 class="dia" id="quinta">Quinta-feira</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
-
-            <ul class="lista-itens">
-            </ul>
+            <ul class="lista-itens"></ul>
         </div>
 
         <div class="dia-semana">
@@ -97,20 +90,15 @@
                 <h3 class="dia" id="sexta">Sexta-feira</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
-
-            <ul class="lista-itens">
-            </ul>
+            <ul class="lista-itens"></ul>
         </div>
-        <script src="js/todolist.js"></script>
 
         <div class="dia-semana">
             <div class="container-dia-semana">
                 <h3 class="dia" id="sabado">Sábado</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
-
-            <ul class="lista-itens">
-            </ul>
+            <ul class="lista-itens"></ul>
         </div>
 
         <div class="dia-semana">
@@ -118,11 +106,20 @@
                 <h3 class="dia" id="domingo">Domingo</h3>
                 <input class="btn-add" type="submit" value="+">
             </div>
-
-            <ul class="lista-itens">
-            </ul>
-        </div>        
+            <ul class="lista-itens"></ul>
+        </div>  
     </div>
+
+    <footer>
+        <a href="https://www.linkedin.com/in/anna-luiza-camargo-fistarol/">
+            <p class="copyright">&copy; Desenvolvido por Anna Luiza - 2023</p>
+        </a>
+        <a href="https://github.com/annaluizacamargo/cronos">
+            <img src="img/logo1.svg" id="img-logofooter" alt="Logo Cronos">
+        </a>
+    </footer>
+
     <script src="js/main.js"></script>
+
 </body>
 </html>
