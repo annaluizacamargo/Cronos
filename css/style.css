@@ -12,17 +12,17 @@
     --green-dark-1: #7A9D60;
     --green-dark-2: #51693e;
     --green-dark-3: #82A368;
-    --white: #FEFEFE;    
+    --white: #FEFEFE;
 }
 
-body{
+body {
     font-family: 'Open Sans',sans-serif;
     background: var(--background);
     box-sizing: border-box;
     padding-top: 4rem;
 }
 
-header{
+header {
     text-align: center;
     height: fit-content;
     position: fixed;
@@ -55,7 +55,7 @@ header{
     align-items: center;
 }
 
-.span{
+.span {
     display: flex;
     justify-content: flex-end;
     height: 30px;
@@ -70,21 +70,20 @@ header{
     font-size: large;
 }
   
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
     color: red;
     text-decoration: none;
     cursor: pointer;
 }
 
-.novo-item{
+.novo-item {
     text-align: center;
     padding: 10px;
     margin: 0;
     color: var(--laranja);
 }
 
-.container{
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,7 +92,7 @@ header{
     border-radius: 30px;
 }
 
-#input-novo-item{
+#input-novo-item {
     background-color: var(--amarelo-claro);
     padding: 0.5rem 1rem;
     border: 10px var(--amarelo-claro) solid;
@@ -101,7 +100,7 @@ header{
     width: 60%;
 }
 
-#btn-add-form{
+#btn-add-form {
     background-color: var(--laranjinha);
     border-color: var(--laranjinha);
     border-radius: 0 30px 30px 0;
@@ -110,13 +109,13 @@ header{
     font-size: medium;
 }
 
-.btn-add-form:hover{
+.btn-add-form:hover {
     background-color: var(--laranja);
     color: white;
     cursor: pointer;
 }
 
-#editContainer{
+#editContainer {
     position: absolute;
     width: 300px;
     height: 50px;
@@ -130,20 +129,20 @@ header{
     display: none;
 }
 
-#editInput{
+#editInput {
     background-color: var(--green-light-1);
     border-radius: 30px 0 0 30px;
     padding: 0.5rem;
 }
 
-#editButton{
+#editButton {
     background-color: var(--green-light-1);
     border: 1px var(--green-light-1) solid;
     padding: 0.5rem;
     border-bottom: 3px gray solid;
 }
 
-#cancelButton{
+#cancelButton {
     background-color: var(--green-light-1);
     border-radius: 0 30px 30px 0;
     border: 1px var(--green-light-1) solid;
@@ -151,25 +150,25 @@ header{
     border-bottom: 3px gray solid;
 }
 
-#editButton:hover, #cancelButton:hover{
+#editButton:hover, #cancelButton:hover {
     background-color: var(--green-light-2);
     border: 1px var(--green-light-1) solid;
     cursor: pointer;
 }
 
-#dia-semana{
+#dia-semana {
     padding: 1rem;
     align-items: center;
 }
 
-.descricao{
+.descricao {
     margin: 0;
     align-items: center;
     font-size: small;
     text-align: center;
 }
 
-select{
+select {
     display: block;
     background-color: var(--laranjinha);
     border: 3px var(--amarelo-claro) solid;
@@ -179,7 +178,7 @@ select{
     padding: 5px;
 }
 
-select:hover{
+select:hover {
     background-color: var(--amarelo);
     border: 3px var(--laranjinha) solid;
 }
@@ -198,8 +197,8 @@ select:hover{
 
 
 
-.dia-semana{
-    background-color: var(--green-light-1);    
+.dia-semana {
+    background-color: var(--green-light-1);
     margin: 0.5rem;
     min-width: 400px;
     max-height: fit-content;
@@ -207,16 +206,16 @@ select:hover{
 }
 
 .container-dia-semana {
-    background-color: var(--green-light-1); 
-    border-bottom: 5px var(--green-dark-1) solid; 
+    background-color: var(--green-light-1);
+    border-bottom: 5px var(--green-dark-1) solid;
     border-radius: 30px 30px 0 0;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.btn-add{
+.btn-add {
     background-color: var(--green-light-2);
     border-color: var(--green-light-2);
     border-radius: 30px;
@@ -226,7 +225,7 @@ select:hover{
     padding: 1px 10px;
 }
 
-.btn-add:hover{
+.btn-add:hover {
     background-color: var(--green-dark-1);
     cursor: pointer;
 }
@@ -240,36 +239,36 @@ ul {
     list-style: none;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     min-height: 300px;
     border-radius: 0 0 30px 30px;
 }
 
-.li-tarefas{
+.li-tarefas {
     background-color: var(--background-2);
     border-bottom: 5px var(--green-dark-1) solid;
     border-radius: 15px;    
     column-gap: 0.8rem;
     display: flex;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     align-items: center;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
 }
 
-.nome-tarefa{
-    width: 210px;
+.nome-tarefa {
+    width: 225px;
 }
 
-p .nome-tarefa{
+p .nome-tarefa {
     word-break: break-all;
-    overflow-wrap: break-word;   
+    overflow-wrap: break-word;
 }
 
-.fa-edit, .fa-trash-alt{
+.fa-edit, .fa-trash-alt {
     color: var(--green-dark-1);
 }
 
-.fa-edit:hover, .fa-trash-alt:hover{
+.fa-edit:hover, .fa-trash-alt:hover {
     color: var(--green-dark-2);
     cursor: pointer;
 }
