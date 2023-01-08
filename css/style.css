@@ -43,7 +43,7 @@ header {
     text-align: right;
 }
 
-#modal-input {
+#modal-overlay {
     display: none; /* display: block */
     position: fixed;
     z-index: 30;
@@ -247,7 +247,7 @@ ul {
 }
 
 .nome-tarefa {
-    width: 225px;
+    width: 80%;
 }
 
 .fa-edit, .fa-trash-alt {
@@ -284,5 +284,48 @@ a {
     }
     to {
       transform: rotate(359deg);
+    }
+}
+
+/*Responsividade - Celular*/
+@media (max-width: 666px) {
+
+    body {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    #img-logo {
+        margin: auto;
+    }
+
+    #p-header {
+        display: none;
+    }
+
+    .formulario {
+        margin: 50% auto;
+        width: 90%;
+        height: 270px;
+    }
+
+    #semana {
+        display: block;
+        padding: 1rem auto;
+    }
+
+    .dia-semana {
+        min-width: 90%;
+        margin-bottom: 1rem;
+    }
+
+    .lista-itens {
+        min-height: fit-content;
     }
 }
