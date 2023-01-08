@@ -1,13 +1,13 @@
 const semana = document.getElementById("semana");
-let diaSemana = [...document.getElementsByClassName("dia")];
-let containerDiaSemana = [...document.getElementsByClassName("container-dia-semana")];
-let ulListaItens = [...document.getElementsByClassName("lista-itens")];
-let liItens = [...document.getElementsByClassName("li-tarefas")];
+const diaSemana = [...document.getElementsByClassName("dia")];
+const containerDiaSemana = [...document.getElementsByClassName("container-dia-semana")];
+const ulListaItens = [...document.getElementsByClassName("lista-itens")];
+const liItens = [...document.getElementsByClassName("li-tarefas")];
 const modal = document.getElementById("modal-overlay");
 const btnAddItem = document.getElementById("btn-add-form");
-let novaTarefa = document.getElementById("input-novo-item");
-let selectDiaSemana = document.querySelector("select");
-let btnsAdd = [...document.getElementsByClassName("btn-add")];
+const novaTarefa = document.getElementById("input-novo-item");
+const selectDiaSemana = document.querySelector("select");
+const btnsAdd = [...document.getElementsByClassName("btn-add")];
 let editDiaSemana = null;
 
 let tarefas = {
@@ -20,14 +20,15 @@ let tarefas = {
     "domingo": [],
 };
 
+//@ Função para recuperar os dados armazenados no localstorage e passar os parâmetros para criar as li's =
 function recuperarDados() {
-    Object.keys(tarefas).forEach((key)=>{ //_ Mostra todas as chaves primárias do objeto
+    Object.keys(tarefas).forEach((key) => { //_ Mostra todas as chaves primárias do objeto
         let valueKey = localStorage.getItem(key);
         tarefas[key] = JSON.parse(valueKey) ?? [];
         let recuperaTarefas = tarefas[key];
 
         // criando Tarefas =
-        recuperaTarefas.forEach((objetoTarefa)=>{
+        recuperaTarefas.forEach((objetoTarefa) => {
             criarTarefa(
                 objetoTarefa.nomeTarefa,
                 key,
@@ -39,38 +40,37 @@ function recuperarDados() {
 }
 recuperarDados()
 
-//@ FAZER O MODAL APARECER EM TODOS OS DIAS PARA ADICIONAR ITENS
+
+//@ Função para exibir o modal para criar novas tarefas (li's) =
 btnsAdd.forEach((btn) => {
     btn.addEventListener("click", (evento) => {
         evento.preventDefault();
         let dia = evento.target.parentElement.firstElementChild;
         let indexDia = diaSemana.indexOf(dia);
         mostraModal(indexDia);
+        cancelarEditTarefa()
     })
 })
 
-// FUNÇÃO PARA EXIBIR O MODAL
 function mostraModal(indexDia) {
     modal.style.display = "block";
     selectDiaSemana.selectedIndex = indexDia;
 }
 
-//@ CAPTURAR INPUT DO MODAL E ADICIONAR NO DIA DA SEMANA
+
+//@ Função para capturar os dados do modal e criar as novas tarefas (li's) =
 btnAddItem.addEventListener("click", (e) => {
     e.preventDefault();
     let nomeNovaTarefa = novaTarefa.value;
     let diaNovaTarefa = selectDiaSemana.value;
-    criarTarefa(nomeNovaTarefa, diaNovaTarefa, false, true); 
-    //removendo o modal =
-    modal.style.display = "none";  
-
-    //limpando o texto do input =
-    novaTarefa.value = "";
+    criarTarefa(nomeNovaTarefa, diaNovaTarefa, false, true);
+    modal.style.display = "none";  //removendo o modal
+    novaTarefa.value = ""; //limpando o texto do input
 })
 
-// FUNÇÃO PARA CRIAR TAREFA =
 function criarTarefa(nomeNovaTarefa, diaNovaTarefa, isCheck, precisaSalvar) {
     let diaSemanaAdd = document.getElementById(`${diaNovaTarefa}`);
+    
     //criando a li =
     const li = document.createElement("li");
     li.className = "li-tarefas";
@@ -114,49 +114,64 @@ function criarTarefa(nomeNovaTarefa, diaNovaTarefa, isCheck, precisaSalvar) {
     salvarLocalstorage(precisaSalvar, nomeNovaTarefa, diaNovaTarefa)
 }
 
-//@ SALVAR NO LOCALSTORAGE
+
+//@ Função para salvar no localstorage em caso de nova tarefa =
 function salvarLocalstorage(precisaSalvar, nomeNovaTarefa, diaNovaTarefa) {
-    if(precisaSalvar){
+    if (precisaSalvar) {
         const tarefa = {
             nomeTarefa: nomeNovaTarefa,
             isCheck: false, //_sempre que tem booleano escreva de forma com que facilite a leitura como se estivesse fazendo um ternário "está checado?"
         }
         tarefas[`${diaNovaTarefa}`].push(tarefa);
         localStorage.setItem(`${diaNovaTarefa}`, JSON.stringify(tarefas[diaNovaTarefa]));
-    } 
+    }
 }
 
 
-//@ FAZER O BOTÃO DE CLOSE DO MODAL FUNCIONAR
+//@ Atribuindo funcionamento ao botão de "fechar" do modal =
 const btnCloseModal = document.querySelector("span");
-
 btnCloseModal.addEventListener("click", evento => {
     evento.preventDefault();
     modal.style.display = "none";
 })
 
-//@ FAZER OS BOTÕES DAS LI'S FUNCIONAREM
+
+//@ Função para fechar o modal quando clicar fora do mesmo =
+function fecharModal() {
+    document.documentElement.onclick = (event) => {
+        const overlay = document.getElementById("modal-overlay");
+        if (event.target == overlay) {
+            overlay.style.display = "none";
+        }
+    }
+}
+fecharModal()
+
+
+//@ Atribuindo funcionamento aos botões das li's (check, edit, deleted) =
+// CHECAR =
 function checar() {
-    const diaSemana = this.parentElement.getAttribute("dia-semana")
+    const diaSemana = this.parentElement.getAttribute("dia-semana");
     const li = this.parentElement;
     const ul = li.parentElement;
     const indexUl = ulListaItens.indexOf(ul);
     const ulItens = [...ulListaItens[indexUl].children];
     const indexli = ulItens.indexOf(li);
 
-    if(this.checked){
-        !this.checked
-        tarefas[diaSemana][indexli].isCheck = true
+    if (this.checked) {
+        !this.checked;
+        tarefas[diaSemana][indexli].isCheck = true;
     } else {
-        this.checked
-        tarefas[diaSemana][indexli].isCheck = false
+        this.checked;
+        tarefas[diaSemana][indexli].isCheck = false;
     }
-
+    cancelarEditTarefa()
     update(diaSemana)
 }
 
-
+// EDITAR =
 const editContainer = document.getElementById("editContainer");
+let editInput = document.getElementById("editInput");
 
 function criarCaixaEditar(evento) {
     editContainer.style.display = "flex";
@@ -164,7 +179,7 @@ function criarCaixaEditar(evento) {
     let posicaoLargura = this.offsetLeft;
 
     editContainer.style.top = `${posicaoAltura + 30}px`;
-    editContainer.style.left = `${posicaoLargura - 280}px`;
+    editContainer.style.left = `${posicaoLargura - 265}px`;
 
     editDiaSemana = evento.target.parentElement;
     let nomeTarefaAtual = evento.target.parentElement.querySelector(".nome-tarefa").textContent;
@@ -172,9 +187,7 @@ function criarCaixaEditar(evento) {
     textoLi.value = nomeTarefaAtual;
 }
 
-let editInput = document.getElementById("editInput");
-
-function editar(event) {
+function editar() {
     let textoLi = editDiaSemana.querySelector(".nome-tarefa");
     const diaSemana = textoLi.parentElement.getAttribute("dia-semana");
     const li = textoLi.parentElement;
@@ -185,25 +198,23 @@ function editar(event) {
     
     if (editInput.value) {
         textoLi.textContent = editInput.value;
-        editContainer.style.display = "none";
+        cancelarEditTarefa()
     } else {
         alert("Para continuar, por favor adicione um nome para sua Tarefa");
         throw Error("Para continuar, por favor adicione um nome para sua Tarefa");
     }
-
     textoLi.textContent = editInput.value;
     tarefas[diaSemana][indexli].nomeTarefa = editInput.value;
-
-    console.log(tarefas[diaSemana])
     update(diaSemana)
 }
 
-function cancelar(event) {
-    event.target.parentElement.style.display = "none";
+function cancelar() {
+    cancelarEditTarefa()
 }
 
+// DELETAR =
 function deletar() {
-    editContainer.style.display = "none";
+    cancelarEditTarefa()
     const li = this.parentElement;
     const ul = li.parentElement;
     const indexUl = ulListaItens.indexOf(ul);
@@ -213,37 +224,22 @@ function deletar() {
 
     tarefas[diaSemana].splice(indexli, 1);
     this.parentElement.remove();
-
     update(diaSemana);
 }
 
-function update(diaSemana){
-    localStorage.setItem(`${diaSemana}`, JSON.stringify(tarefas[diaSemana]))
+
+//@ Função update (atualizar os dados do localstorage) =
+function update(diaSemana) {
+    localStorage.setItem(`${diaSemana}`, JSON.stringify(tarefas[diaSemana]));
 }
 
-//@ LIMITAR ATÉ NO MÁX. 30 CARACTERES ANTES DE QUEBRAR A LINHA NA LI
-//@ LOCALSTORAGE => Criação, Leitura, Atualização e Remoção (CRUD)
-
-document.documentElement.onclick = function(event){
-
-    if (event.target !== optDesk) {
-        optDesk.style.display = 'none';
-    }
+function cancelarEditTarefa(){
+    editContainer.style.display = "none";
 }
 
-document.documentElement.onclick = function(event){
-    if(event.target != document.querySelector(".formulario")){
-        console.log(event.target)
-        //console.log("oi")
-    }
-}
 
-function fecharModal(){
-    document.documentElement.onclick = (event) => {
-        const overlay = document.getElementById("modal-overlay");
-        if (event.target == overlay) {
-            overlay.style.display = "none";
-        }
-    }
-}
-fecharModal()
+//@ Alinhamento do footer =
+const footerDiv = document.getElementById("footer");
+document.addEventListener("scroll", () => {
+    footerDiv.style.left = `${window.scrollX}px`;
+})
