@@ -242,16 +242,18 @@ ul {
     column-gap: 0.8rem;
     display: flex;
     padding: 0.5rem 1rem;
-    align-items: center;
     margin: 0.5rem 0;
 }
 
 .nome-tarefa {
     width: 80%;
+    align-items: center;
 }
 
 .fa-edit, .fa-trash-alt {
     color: var(--green-dark-1);
+    align-items: flex-start;
+    margin-top: 1rem;
 }
 
 .fa-edit:hover, .fa-trash-alt:hover {
@@ -287,7 +289,7 @@ a {
     }
 }
 
-/*Responsividade - Celular*/
+/*Responsividade*/
 @media (max-width: 666px) {
 
     body {
