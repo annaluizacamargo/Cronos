@@ -5,7 +5,7 @@ Olá, sou a Anna Luiza de Camargo Fistarol, autora deste projeto, e este além d
 
 Para tanto, escolhi algo que adoro fazer e que é muito importante para manter a organização profissional e pessoal, que consiste em um "To do list", ou seja, uma lista de tarefas que precisam ser feitas ao longo da semana.
 
-E foi assim que surgiu o **Cronos**, um site elaborado para ser utilizado com ênfase em Desktop (com algumas adaptações para acesso Mobile), estando disponível para acesso no link: <https://cronos.surge.sh/>.
+E foi assim que surgiu o **Cronos**, um site elaborado para ser utilizado com ênfase em Desktop (com algumas adaptações para acesso Mobile), estando disponível para acesso no link: <https://cronos-three.vercel.app/>.
 
 ![image](https://user-images.githubusercontent.com/100868704/211213574-25e7dbca-816a-4a7c-8b07-ed0d331ea9b9.png)
 <img width="4323" alt="Group 1 (1)" src="https://user-images.githubusercontent.com/100868704/211215067-ef3233ef-7d67-4935-b503-4f4d53876b88.png">
