@@ -28,7 +28,7 @@ Por fim, é válido ressaltar que tudo isso só foi possível graças ao planeja
 
 ## 💻✨ Rodando o projeto
 Para rodar o repositório é necessário clonar o mesmo, e procurar no seu explorador de arquivos o HTML para iniciar o projeto: `index.html`
-Ou simplesmente clicar no link onde o mesmo está disponível para acesso: <https://cronos.surge.sh/>
+Ou simplesmente clicar no link onde o mesmo está disponível para acesso: <https://cronos-three.vercel.app/>
 Observação: os testes referente ao layout e responsividade foram realizadas somente utilizando o Google Chrome e Android.<br><br>
 
 ## 🌺✨ Forma de contato
